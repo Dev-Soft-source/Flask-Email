@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: flask-react-mysql
+    env: python
+    buildCommand: "pip install -r backend/requirements.txt && cd frontend && npm install && npm run build"
+    startCommand: "gunicorn -w 4 -b 0.0.0.0:5000 app:app -c backend/"
+    envVars:
+      - key: MYSQL_HOST
+        value: your-mysql-host
+      - key: MYSQL_USER
+        value: your-mysql-user
+      - key: MYSQL_PASSWORD
+        value: your-mysql-password
+      - key: MYSQL_DB
+        value: your-mysql-db
